@@ -78,3 +78,5 @@ typings/
 package.json
 
 package-lock.json
+
+sharedRabbitMqResource.js
