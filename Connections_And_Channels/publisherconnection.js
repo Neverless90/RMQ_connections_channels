@@ -1,5 +1,5 @@
 const amqp = require('amqplib');
-const uri  = 'amqp://localhost:5672';//
+const uri  = 'amqp://localhost:5672';
 
 
 const publish = async (msg)=>{ 

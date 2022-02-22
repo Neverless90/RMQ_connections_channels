@@ -4,7 +4,7 @@ const uri = 'amqp://localhost:5672';//
 const consume = async ()=>{
     try { 
         const connection = await await amqp.connect(uri);
-        channel = await connection.createChannel();
+        let channel = await connection.createChannel();
         
         await channel.assertExchange('fanoutTest','fanout')
         await channel.assertQueue("",{ exclusive: false});
@@ -12,8 +12,9 @@ const consume = async ()=>{
         await channel.consume("", message =>{
             let msg = message.content.toString();
             console.log(`${msg} in consumer 1`);  
+            channel.ack(message);
         }); 
-         channel.ack(message);
+         
     } catch (error) {
         console.log (`error is: ${error}`);
     }
