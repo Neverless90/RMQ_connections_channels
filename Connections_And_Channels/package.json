@@ -1,0 +1,15 @@
+{
+  "name": "connections_and_channels",
+  "version": "1.0.0",
+  "description": "De connecties en channel management is niet efficiënt. Probeer deze efficiënt te maken zodat niet bij elke localhost:3000/start een nieuwe connectie wordt aangemaakt en channels.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "express": "^4.18.2"
+  }
+}
