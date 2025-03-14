@@ -10,7 +10,7 @@ const publish = async (msg) => {
 
     console.log('message is naar queue verzonden :' + msg);
   } catch (error) {
-    console.log('err in publisher : ' + error);
+    console.error('err in publisher : ' + error);
   }
 };
 

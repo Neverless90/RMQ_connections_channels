@@ -14,7 +14,7 @@ const consume = async () => {
         });
 
     } catch (error) {
-        console.log(`error is: ${error}`);
+        console.error(`error in 2: ${error}`);
     }
 };
 

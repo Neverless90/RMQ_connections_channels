@@ -14,7 +14,8 @@ const consume = async () => {
         });
 
     } catch (error) {
-        console.log(`error is: ${error}`);
+        console.error(`error in 1: ${error}`);
     }
 };
+
 module.exports = consume;
