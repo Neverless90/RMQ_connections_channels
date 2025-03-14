@@ -1,15 +1,13 @@
-const amqp = require('amqplib');
-const uri = 'amqp://localhost:5672';//
+const { getChannel } = require('./sharedRabbitMqResource');
 
 const consume = async () => {
     try {
-        const connection = await amqp.connect(uri);
-        let channel = await connection.createChannel();
+        const channel = await getChannel();
 
-        await channel.assertExchange('fanoutTest', 'fanout')
-        await channel.assertQueue("", { exclusive: false });
-        await channel.bindQueue("", "fanoutTest", "");
-        await channel.consume("", message => {
+        await channel.assertExchange('fanoutTest', 'fanout');
+        const q = await channel.assertQueue("", { exclusive: false });
+        await channel.bindQueue(q.queue, "fanoutTest", "");
+        await channel.consume(q.queue, message => {
             let msg = message.content.toString();
             console.log(`${msg} in consumer 1`);
             channel.ack(message);
@@ -18,5 +16,5 @@ const consume = async () => {
     } catch (error) {
         console.log(`error is: ${error}`);
     }
-}
+};
 module.exports = consume;

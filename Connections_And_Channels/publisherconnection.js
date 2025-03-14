@@ -1,11 +1,9 @@
-const amqp = require('amqplib');
-const uri = 'amqp://localhost:5672';
+const { getChannel } = require('./sharedRabbitMqResource');
 
 const publish = async (msg) => {
   try {
     console.log('Running....');
-    const connection = await amqp.connect(uri);
-    channel = await connection.createChannel();
+    const channel = await getChannel();
 
     await channel.assertExchange("fanoutTest", "fanout");
     await channel.publish("fanoutTest", "", Buffer.from(msg));
@@ -14,6 +12,6 @@ const publish = async (msg) => {
   } catch (error) {
     console.log('err in publisher : ' + error);
   }
-}
+};
 
 module.exports = publish;
